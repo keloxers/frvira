@@ -59,7 +59,7 @@ class ElectorsController extends BaseController {
 
 
 
-			$padprovs = DB::table('padprov')->where('LEYCIR', 'like', '%' . 'VIRASORO' . '%')->get();
+			$padprovs = DB::table('PADPROV')->where('LEYCIR', 'like', '%' . 'VIRASORO' . '%')->get();
 
 			$i = 0;
 
