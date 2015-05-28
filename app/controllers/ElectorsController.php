@@ -61,10 +61,24 @@ class ElectorsController extends BaseController {
 
 			$padprovs = DB::table('padprov')->where('LEYCIR', 'like', '%' . 'VIRASORO' . '%')->get();
 
+			$i = 0;
+
 
 
 			foreach ($padprovs as $padprov) {
 
+				$i++;
+				// echo "ID: " . $i . " ";
+
+				$elector = DB::table('electors')->where('matricula', '=', $padprov->MATRICULA)->get();
+
+				if (count($elector) > 0 ) {
+
+					// echo "Matricula: " . $padprov->MATRICULA . " YA EXISTE.<br>";
+
+				} else {
+
+					echo "Agregando Matricula $padprov->MATRICULA <br>";
 
 				$elector = new Elector;
 
@@ -81,10 +95,12 @@ class ElectorsController extends BaseController {
 
 				$elector->save();
 
+				}
+
 
 			}
 
-
+die;
 
 			return Redirect::to('/');
 
