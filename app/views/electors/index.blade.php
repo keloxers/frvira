@@ -48,10 +48,11 @@
 										<thead>
 											<tr>
 												<th>Matricula</th>
-												<th>Apellido</th>
-												<th>Nombre</th>
+												<th>Apellido y nombre</th>
 												<th>Direccion</th>
 												<th>Barrio</th>
+												<th>Categoria</th>
+												<th>Puntero</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -65,34 +66,64 @@
 
 													echo "<tr>";
 											        echo "<td>" . $elector->matricula . "</td>";
-															echo "<td>" . $elector->apellido . "</td>";
-															echo "<td>" . $elector->nombre . "</td>";
+															echo "<td>" . $elector->apellido . ", " . $elector->nombre . "</td>";
 															echo "<td>" . $elector->domicilio . "</td>";
+
 															echo "<td>";
-
-															$barrio = Barrio::find($elector->barrios_id);
-
-															if ($barrio) {
-																$barrio_id = $barrio->id;
-															} else {
-																$barrio_id = 0;
-															}
-
-															?>
-
-															{{ Form::open(array('route' => 'electors.grabarbarrio', "autocomplete"=>"off", 'class' => 'panel-body wrapper-lg')) }}
-															{{ Form::hidden('electors_id', $elector->id) }}
-															{{ Form::select( 'barrio', Barrio::All()->lists('barrio', 'id'), $barrio->id, array( "placeholder" => "", 'class' => 'form-control input-sm')) }}
-															{{ Form::submit('Grabar', array('class' => 'btn btn-primary')) }}
-															{{ Form::close() }}
-
-
-
-
-
-															<?php
+																		$barrio = Barrio::find($elector->barrios_id);
+																		if ($barrio) {
+																			$barrio_id = $barrio->id;
+																		} else {
+																			$barrio_id = 0;
+																		}
+																		?>
+																			{{ Form::open(array('route' => 'electors.grabarbarrio', "autocomplete"=>"off", 'class' => 'panel-body wrapper-lg')) }}
+																			{{ Form::hidden('electors_id', $elector->id) }}
+																			{{ Form::select( 'barrio', Barrio::All()->lists('barrio', 'id'), $barrio->id, array( "placeholder" => "", 'class' => 'form-control input-sm')) }}
+																			{{ Form::submit('Grabar barrio', array('class' => 'btn btn-primary')) }}
+																			{{ Form::close() }}
+																		<?php
 
 															echo "</td>";
+
+															echo "<td>";
+																		$categoria = Categoria::find($elector->categorias_id);
+																		if ($categoria) {
+																			$categoria_id = $categoria->id;
+																		} else {
+																			$categoria_id = 0;
+																		}
+																		?>
+																			{{ Form::open(array('route' => 'electors.grabarcategoria', "autocomplete"=>"off", 'class' => 'panel-body wrapper-lg')) }}
+																			{{ Form::hidden('electors_id', $elector->id) }}
+																			{{ Form::select( 'categoria', Categoria::All()->lists('categoria', 'id'), $categoria->id, array( "placeholder" => "", 'class' => 'form-control input-sm')) }}
+																			{{ Form::submit('Grabar categoria', array('class' => 'btn btn-primary')) }}
+																			{{ Form::close() }}
+																		<?php
+
+															echo "</td>";
+
+															echo "<td>";
+																		$puntero = Elector::find($elector->puntero_id);
+																		if ($puntero) {
+																			$puntero_id = $puntero->id;
+																		} else {
+																			$puntero_id = 0;
+																			echo '<span class="label bg-danger">No asignado</span>';
+																			echo '<br>';
+																		}
+																		?>
+																			{{ Form::open(array('route' => 'electors.grabarpuntero', "autocomplete"=>"off", 'class' => 'panel-body wrapper-lg')) }}
+																			{{ Form::hidden('electors_id', $elector->id) }}
+																			{{ Form::select( 'puntero', Elector::where('categorias_id', '=' , 2)->lists('apellido', 'id'), $puntero_id, array( "placeholder" => "", 'class' => 'form-control input-sm')) }}
+																			{{ Form::submit('Grabar puntero', array('class' => 'btn btn-primary')) }}
+																			{{ Form::close() }}
+																		<?php
+
+															echo "</td>";
+
+
+
 													print "</tr>";
 
 

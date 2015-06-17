@@ -48,10 +48,22 @@ Route::post( '/electors/buscar', array(
     'uses' => 'ElectorsController@buscar'
 ) );
 
-// Ciudads
+// Grabar barrio
 Route::post( '/electors/grabarbarrio', array(
     'as' => 'electors.grabarbarrio',
     'uses' => 'ElectorsController@grabarbarrio'
+) );
+
+// Granar categoria
+Route::post( '/electors/grabarcategoria', array(
+    'as' => 'electors.grabarcategoria',
+    'uses' => 'ElectorsController@grabarcategoria'
+) );
+
+// Granar puntero
+Route::post( '/electors/grabarpuntero', array(
+    'as' => 'electors.grabarpuntero',
+    'uses' => 'ElectorsController@grabarpuntero'
 ) );
 
 

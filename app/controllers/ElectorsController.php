@@ -51,6 +51,40 @@ class ElectorsController extends BaseController {
 	}
 
 
+		public function grabarcategoria()
+		{
+
+			$electors_id = Input::get('electors_id');
+			$categorias_id = Input::get('categoria');
+
+			$elector = Elector::find($electors_id);
+
+			$elector->categorias_id = $categorias_id;
+
+			$elector->save();
+
+			return Redirect::to('/electors');
+
+		}
+
+
+
+				public function grabarpuntero()
+				{
+
+					$electors_id = Input::get('electors_id');
+					$puntero_id = Input::get('puntero');
+
+					$elector = Elector::find($electors_id);
+
+					$elector->puntero_id = $puntero_id;
+
+					$elector->save();
+
+					return Redirect::to('/electors');
+
+				}
+
 
 
 
