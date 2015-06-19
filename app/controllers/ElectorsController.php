@@ -294,4 +294,25 @@ die;
     }
 
 
+		public function listarshow()
+		{
+
+
+			$apellido = Input::get('apellido');
+
+
+			$electors = DB::table('electors')->where('apellido', 'like', $apellido . '%')->paginate(150);
+
+			// var_dump($elector);
+			$title = "Electors";
+			return View::make('electors.show', array('title' => $title, 'electors' => $electors));
+
+
+
+
+		}
+
+
+
+
 }

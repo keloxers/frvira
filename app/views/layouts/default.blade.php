@@ -123,9 +123,14 @@
             <li >
               <a href="/electors" >
               <i class="fa fa-money icon"><b class="bg-success"></b></i>
-
                 <span>Electores</span>
+              </a>
+            </li>
 
+            <li >
+              <a href="/electors/listarshow" >
+              <i class="fa fa-money icon"><b class="bg-success"></b></i>
+                <span>Listar</span>
               </a>
             </li>
 
