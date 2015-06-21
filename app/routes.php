@@ -40,12 +40,17 @@ Route::get( '/barrios/search', array(
 ) );
 Route::resource('barrios', 'BarriosController');
 
-// Granar puntero
-Route::get( '/electors/listarshow', array(
-    'as' => 'electors.listarshow',
+// Form listar electores
+Route::get( '/formlistarelectors', array(
+    'as' => 'formlistarelectors',
     'uses' => 'ElectorsController@listarshow'
 ) );
 
+// Form listar electores
+Route::post( '/formlistarelectors', array(
+    'as' => 'formlistarelectors',
+    'uses' => 'ElectorsController@listarshow'
+) );
 
 
 
@@ -75,12 +80,6 @@ Route::post( '/electors/grabarpuntero', array(
     'uses' => 'ElectorsController@grabarpuntero'
 ) );
 
-
-// Granar puntero
-Route::post( '/electors/listarshow', array(
-    'as' => 'electors.listarshow',
-    'uses' => 'ElectorsController@listarshow'
-) );
 
 
 

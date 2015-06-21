@@ -128,7 +128,7 @@
             </li>
 
             <li >
-              <a href="/electors/listarshow" >
+              <a href="/formlistarelectors" >
               <i class="fa fa-money icon"><b class="bg-success"></b></i>
                 <span>Listar</span>
               </a>

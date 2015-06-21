@@ -7,7 +7,7 @@
 	<section class="panel panel-default">
 		<header class="panel-heading font-bold">Buscar elector</header>
 		<div class="panel-body">
-			{{ Form::open(array('route' => 'electors.listarshow', "autocomplete"=>"off"
+			{{ Form::open(array('route' => 'formlistarelectors', "autocomplete"=>"off"
 , 'class' => 'panel-body wrapper-lg')) }}
 			<div class="form-group">
 				<label>Letra o texto inicia</label>
