@@ -7,7 +7,7 @@
 	<section class="panel panel-default">
 		<header class="panel-heading font-bold">Buscar elector</header>
 		<div class="panel-body">
-			{{ Form::open(array('route' => 'formlistarelectors', "autocomplete"=>"off"
+			{{ Form::open(array('route' => 'showlistarelectors', "autocomplete"=>"off"
 , 'class' => 'panel-body wrapper-lg')) }}
 			<div class="form-group">
 				<label>Letra o texto inicia</label>
@@ -75,13 +75,10 @@
 
 																	echo "<td>";
 																				$barrio = Barrio::find($elector->barrios_id);
-																				if ($barrio) {
-																					$barrio_id = $barrio->id;
+																				if ($elector->barrios_id > 1) {
 																					echo '<span class="label bg-success">' . $barrio->barrio . '</span>';
 																					echo '<br>';
-
 																				} else {
-																					$barrio_id = 0;
 																					echo '<span class="label bg-danger">No asignado</span>';
 																					echo '<br>';
 																				}

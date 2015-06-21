@@ -47,8 +47,8 @@ Route::get( '/formlistarelectors', array(
 ) );
 
 // Form listar electores
-Route::post( '/formlistarelectors', array(
-    'as' => 'formlistarelectors',
+Route::post( '/showlistarelectors', array(
+    'as' => 'showlistarelectors',
     'uses' => 'ElectorsController@listarshow'
 ) );
 
