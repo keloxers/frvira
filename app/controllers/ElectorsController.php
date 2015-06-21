@@ -301,7 +301,7 @@ die;
 			$apellido = Input::get('apellido');
 
 
-			$electors = DB::table('electors')->where('apellido', 'like', $apellido . '%')->paginate(150);
+			$electors = DB::table('electors')->where('apellido', 'like', $apellido . '%')->paginate(1000);
 
 			// var_dump($elector);
 			$title = "Electors";
