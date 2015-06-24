@@ -52,6 +52,12 @@ Route::post( '/showlistarelectors', array(
     'uses' => 'ElectorsController@listarshow'
 ) );
 
+// // Grabar barrio
+// Route::post( '/electors/{id}/edit', array(
+//     'as' => 'electors.edit',
+//     'uses' => 'ElectorsController@edit'
+// ) );
+
 
 
 Route::resource('electors', 'ElectorsController');
