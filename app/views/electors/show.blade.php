@@ -11,7 +11,7 @@
 , 'class' => 'panel-body wrapper-lg')) }}
 			<div class="form-group">
 				<label>Letra o texto inicia</label>
-				{{ Form::text('apellido', '', array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese letras iniciales')) }}
+				{{ Form::text('apellido', $apellido, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese letras iniciales')) }}
 				<?php
 
 					if ($errors->
@@ -68,7 +68,16 @@
 													{
 
 															echo "<tr>";
-													        echo "<td>" . $elector->matricula . "</td>";
+													        echo "<td>";
+																	echo "<a href='/electors/" . $elector->id . "/" . $apellido . "/edit'>";
+																	echo '<span class="bg-success"> ';
+																	echo '<b>';
+																			echo $elector->matricula;
+																	echo '</b>';
+																	echo ' </span>';
+																	echo '</a>';
+
+																	echo "</td>";
 																	echo "<td>" . $elector->clase . "</td>";
 																	echo "<td>" . $elector->apellido . ", " . $elector->nombre . "</td>";
 																	echo "<td>" . $elector->domicilio . "</td>";
@@ -89,6 +98,9 @@
 																				$puntero = Elector::find($elector->puntero_id);
 																				if ($puntero) {
 																					$puntero_id = $puntero->id;
+																					echo '<span class="label bg-info">' . $puntero->apellido .', ' . $puntero->nombre . '</span>';
+																					echo '<br>';
+
 																				} else {
 																					$puntero_id = 0;
 																					echo '<span class="label bg-danger">No asignado</span>';

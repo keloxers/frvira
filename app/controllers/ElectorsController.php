@@ -34,56 +34,34 @@ class ElectorsController extends BaseController {
 	}
 
 
-	public function grabarbarrio()
+	public function grabarelector()
 	{
 
 		$electors_id = Input::get('electors_id');
 		$barrios_id = Input::get('barrio');
+		$categorias_id = Input::get('categoria');
+		$puntero_id = Input::get('puntero_id');
+		$apellido = Input::get('apellido');
+
 
 		$elector = Elector::find($electors_id);
 
 		$elector->barrios_id = $barrios_id;
+		$elector->categorias_id = $categorias_id;
+		$elector->puntero_id = $puntero_id;
 
 		$elector->save();
 
-		return Redirect::to('/electors');
+
+		$electors = DB::table('electors')->where('apellido', 'like', $apellido . '%')->paginate(3000);
+
+		// var_dump($elector);
+		$title = "Electors";
+		return View::make('electors.show', array('title' => $title, 'electors' => $electors, 'apellido' => $apellido));
+
 
 	}
 
-
-		public function grabarcategoria()
-		{
-
-			$electors_id = Input::get('electors_id');
-			$categorias_id = Input::get('categoria');
-
-			$elector = Elector::find($electors_id);
-
-			$elector->categorias_id = $categorias_id;
-
-			$elector->save();
-
-			return Redirect::to('/electors');
-
-		}
-
-
-
-				public function grabarpuntero()
-				{
-
-					$electors_id = Input::get('electors_id');
-					$puntero_id = Input::get('puntero');
-
-					$elector = Elector::find($electors_id);
-
-					$elector->puntero_id = $puntero_id;
-
-					$elector->save();
-
-					return Redirect::to('/electors');
-
-				}
 
 
 
@@ -206,12 +184,20 @@ die;
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($id, $apellido='')
 	{
-		$barrio = Barrio::find($id);
-		$title = "Editar Barrio";
 
-        return View::make('barrios.edit', array('title' => $title, 'barrio' => $barrio));
+
+		$electors = DB::table('electors')->where('id', '=', $id)->get();
+
+		// var_dump($elector);
+		$title = "Electors";
+		return View::make('electors.index', array('title' => $title, 'electors' => $electors, 'apellido' => $apellido));
+
+
+
+
+
 	}
 
 	/**
@@ -305,7 +291,7 @@ die;
 
 			// var_dump($elector);
 			$title = "Electors";
-			return View::make('electors.show', array('title' => $title, 'electors' => $electors));
+			return View::make('electors.show', array('title' => $title, 'electors' => $electors, 'apellido' => $apellido));
 
 
 

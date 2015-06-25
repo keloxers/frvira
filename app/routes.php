@@ -52,15 +52,15 @@ Route::post( '/showlistarelectors', array(
     'uses' => 'ElectorsController@listarshow'
 ) );
 
-// // Grabar barrio
-// Route::post( '/electors/{id}/edit', array(
-//     'as' => 'electors.edit',
-//     'uses' => 'ElectorsController@edit'
-// ) );
+// Editar Elector
+Route::get( '/electors/{id}/{name?}/edit', array(
+    'as' => 'electors.edit',
+    'uses' => 'ElectorsController@edit'
+) );
 
 
 
-Route::resource('electors', 'ElectorsController');
+// Route::resource('electors', 'ElectorsController');
 
 // Ciudads
 Route::post( '/electors/buscar', array(
@@ -69,21 +69,9 @@ Route::post( '/electors/buscar', array(
 ) );
 
 // Grabar barrio
-Route::post( '/electors/grabarbarrio', array(
-    'as' => 'electors.grabarbarrio',
-    'uses' => 'ElectorsController@grabarbarrio'
-) );
-
-// Granar categoria
-Route::post( '/electors/grabarcategoria', array(
-    'as' => 'electors.grabarcategoria',
-    'uses' => 'ElectorsController@grabarcategoria'
-) );
-
-// Granar puntero
-Route::post( '/electors/grabarpuntero', array(
-    'as' => 'electors.grabarpuntero',
-    'uses' => 'ElectorsController@grabarpuntero'
+Route::post( '/electors/grabarelector', array(
+    'as' => 'electors.grabarelector',
+    'uses' => 'ElectorsController@grabarelector'
 ) );
 
 

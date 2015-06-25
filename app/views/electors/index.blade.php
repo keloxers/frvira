@@ -50,9 +50,7 @@
 												<th>Matricula</th>
 												<th>Apellido y nombre</th>
 												<th>Direccion</th>
-												<th>Barrio</th>
-												<th>Categoria</th>
-												<th>Puntero</th>
+												<th>Datos</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -77,16 +75,13 @@
 																			$barrio_id = 0;
 																		}
 																		?>
-																			{{ Form::open(array('route' => 'electors.grabarbarrio', "autocomplete"=>"off", 'class' => 'panel-body wrapper-lg')) }}
+																			{{ Form::open(array('route' => 'electors.grabarelector', "autocomplete"=>"off", 'class' => 'panel-body wrapper-lg')) }}
 																			{{ Form::hidden('electors_id', $elector->id) }}
+																			{{ Form::hidden('apellido', $apellido) }}
+
+																			Barrio:<br>
 																			{{ Form::select( 'barrio', Barrio::All()->lists('barrio', 'id'), $barrio->id, array( "placeholder" => "", 'class' => 'form-control input-sm')) }}
-																			{{ Form::submit('Grabar barrio', array('class' => 'btn btn-primary')) }}
-																			{{ Form::close() }}
 																		<?php
-
-															echo "</td>";
-
-															echo "<td>";
 																		$categoria = Categoria::find($elector->categorias_id);
 																		if ($categoria) {
 																			$categoria_id = $categoria->id;
@@ -94,29 +89,39 @@
 																			$categoria_id = 0;
 																		}
 																		?>
-																			{{ Form::open(array('route' => 'electors.grabarcategoria', "autocomplete"=>"off", 'class' => 'panel-body wrapper-lg')) }}
-																			{{ Form::hidden('electors_id', $elector->id) }}
+																			Categoria:<br>
 																			{{ Form::select( 'categoria', Categoria::All()->lists('categoria', 'id'), $categoria->id, array( "placeholder" => "", 'class' => 'form-control input-sm')) }}
-																			{{ Form::submit('Grabar categoria', array('class' => 'btn btn-primary')) }}
-																			{{ Form::close() }}
 																		<?php
 
-															echo "</td>";
-
-															echo "<td>";
 																		$puntero = Elector::find($elector->puntero_id);
 																		if ($puntero) {
 																			$puntero_id = $puntero->id;
 																		} else {
 																			$puntero_id = 0;
-																			echo '<span class="label bg-danger">No asignado</span>';
-																			echo '<br>';
 																		}
+
+																		$punteros = Elector::where('categorias_id', '=' , 2)->get();
+
+																		$seleccion[]= Array(0 => 'Sin definir');
+
+																		foreach ($punteros as $puntero)
+																		{
+
+																			$seleccion[]= Array($puntero->id => $puntero->apellido . ', ' . $puntero->nombre);
+
+
+																		}
+
+
 																		?>
-																			{{ Form::open(array('route' => 'electors.grabarpuntero', "autocomplete"=>"off", 'class' => 'panel-body wrapper-lg')) }}
-																			{{ Form::hidden('electors_id', $elector->id) }}
-																			{{ Form::select( 'puntero', Elector::where('categorias_id', '=' , 2)->lists('apellido', 'id'), $puntero_id, array( "placeholder" => "", 'class' => 'form-control input-sm')) }}
-																			{{ Form::submit('Grabar puntero', array('class' => 'btn btn-primary')) }}
+																			Puntero:<br>
+
+
+																			{{Form::select('puntero_id', $seleccion, $elector->puntero_id, array( 'id' => 'puntero_id', 'name' => 'puntero_id', 'class' => 'form-control input-sm'))}}
+
+
+
+																			{{ Form::submit('Grabar elector', array('class' => 'btn btn-primary')) }}
 																			{{ Form::close() }}
 																		<?php
 
