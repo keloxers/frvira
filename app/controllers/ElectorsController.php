@@ -21,12 +21,13 @@ class ElectorsController extends BaseController {
 
 
 		$matricula = Input::get('matricula');
+		$apellido = '';
 
 		$electors = DB::table('electors')->where('matricula', '=', $matricula)->get();
 
 		// var_dump($elector);
 		$title = "Electors";
-		return View::make('electors.index', array('title' => $title, 'electors' => $electors));
+		return View::make('electors.index', array('title' => $title, 'electors' => $electors, 'apellido' => $apellido));
 
 
 

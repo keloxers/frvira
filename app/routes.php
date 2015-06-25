@@ -58,6 +58,12 @@ Route::get( '/electors/{id}/{name?}/edit', array(
     'uses' => 'ElectorsController@edit'
 ) );
 
+// Editar Elector
+Route::get( '/electors', array(
+    'as' => 'electors.index',
+    'uses' => 'ElectorsController@index'
+) );
+
 
 
 // Route::resource('electors', 'ElectorsController');
