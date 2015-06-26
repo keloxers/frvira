@@ -82,6 +82,15 @@ Route::post( '/electors/grabarelector', array(
 
 
 
+// Grabar barrio
+Route::get( '/electoresporbarrios', array(
+    'as' => 'electors.electoresporbarrios',
+    'uses' => 'ElectorsController@electoresporbarrios'
+) );
+
+
+
+
 
 
 Route::get('importarpadron','ElectorsController@importarpadron');

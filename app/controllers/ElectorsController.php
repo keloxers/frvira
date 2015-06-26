@@ -69,15 +69,8 @@ class ElectorsController extends BaseController {
 
 		public function importarpadron()
 		{
-
-
-
 			$padprovs = DB::table('PADPROV')->where('LEYCIR', 'like', '%' . 'VIRASORO' . '%')->get();
-
 			$i = 0;
-
-
-
 			foreach ($padprovs as $padprov) {
 
 				$i++;
@@ -107,158 +100,73 @@ class ElectorsController extends BaseController {
 				$elector->barrios_id = 1;
 
 				$elector->save();
-
 				}
-
-
 			}
-
-die;
-
+			die;
 			return Redirect::to('/');
-
-
 		}
 
-
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
         return View::make('barrios.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-
 		$rules = [
 			'barrio' => 'required|unique:barrios'
 		];
-
-
 		if (! Barrio::isValid(Input::all(),$rules)) {
-
 			return Redirect::back()->withInput()->withErrors(Barrio::$errors);
-
 		}
-
 		$barrio = new Barrio;
-
 		$barrio->barrio = Input::get('barrio');
-
 		$barrio->save();
-
 		return Redirect::to('/barrios');
-
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
 
 		$barrio = Barrio::find($id);
-
-		// show the view and pass the nerd to it
 		return View::make('barrios.show')
 			->with('barrio', $barrio);
-
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id, $apellido='')
 	{
-
-
 		$electors = DB::table('electors')->where('id', '=', $id)->get();
-
-		// var_dump($elector);
 		$title = "Electors";
 		return View::make('electors.index', array('title' => $title, 'electors' => $electors, 'apellido' => $apellido));
-
-
-
-
-
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function update($id)
 	{
-
-
 		$barrio = Barrio::find($id);
-
 		$rules = [
 				'barrio' => 'required|unique:barrios,barrio,' . $id,
 		];
-
-
-
 		if (! Barrio::isValid(Input::all(),$rules)) {
-
 			return Redirect::back()->withInput()->withErrors(Barrio::$errors);
-
 		}
-
-
 		$barrio->barrio = Input::get('barrio');
-
 		$barrio->save();
-
 		return Redirect::to('/barrios');
-
-
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function destroy($id)
 	{
 		$input = Input::all();
-
-
 		$barrio = Barrio::find($id)->delete();
-
 		return Redirect::to('/barrios');
 	}
 
    public function search(){
-
         $term = Input::get('term');
-
         $ciudads = DB::table('barrios')->where('barrio', 'like', '%' . $term . '%')->get();
-
         $adevol = array();
-
         if (count($barrios) > 0) {
 
             foreach ($barrios as $barrio)
@@ -274,30 +182,36 @@ die;
                         'value' => 'no hay coincidencias para ' .  $term
                     );
         }
-
         return json_encode($adevol);
-
-
     }
 
 
 		public function listarshow()
 		{
+			$apellido = Input::get('apellido', null);
 
+			if ($apellido == null) {
+				$electors = null;
+			} else {
+				$electors = DB::table('electors')->where('apellido', 'like', $apellido . '%')->paginate(3000);
+			}
 
-			$apellido = Input::get('apellido');
-
-
-			$electors = DB::table('electors')->where('apellido', 'like', $apellido . '%')->paginate(3000);
-
-			// var_dump($elector);
 			$title = "Electors";
 			return View::make('electors.show', array('title' => $title, 'electors' => $electors, 'apellido' => $apellido));
-
-
-
-
 		}
+
+
+
+
+
+
+
+				public function electoresporbarrios()
+				{
+					$punteros = DB::table('electors')->where('categorias_id', '=', 2)->get();
+					$title = 'Electores por barrio';
+					return View::make('electors.showporbarrio', array('title' => $title, 'punteros' => $punteros));
+				}
 
 
 
