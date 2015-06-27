@@ -6,7 +6,7 @@
 	<?php
 
 
-		if (count($punteros)>0 )  {
+		if (count($barrios)>0 )  {
 
 
 ?>
@@ -17,9 +17,8 @@
 									<table class="table table-striped b-t b-light text-sm">
 										<thead>
 											<tr>
-												<th>Matricula</th>
-												<th>Clase</th>
-												<th>Apellido y nombre</th>
+												<th>Barrio</th>
+												<th>Opciones</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -29,23 +28,37 @@
 
 
 
-													foreach ($punteros as $elector)
+													foreach ($barrios as $barrio)
 													{
 
 															echo "<tr>";
-													        echo "<td>";
-																	echo "<a href='/electors/" . $elector->id . "/punteros'>";
-																	echo '<span class="bg-success"> ';
-																	echo '<b>';
-																			echo $elector->matricula;
-																	echo '</b>';
-																	echo ' </span>';
-																	echo '</a>';
+																	echo "<td>" . $barrio->barrio . "</td>";
 
-																	echo "</td>";
-																	echo "<td>" . $elector->clase . "</td>";
-																	echo "<td>" . $elector->apellido . ", " . $elector->nombre . "</td>";
+																	echo "<td>";
+																		echo "<a href='/electors/" . $barrio->id . "/barrios/votantestodos'>";
+																		echo '<span class="bg-info"> ';
+																		echo '<b>';
+																				echo 'Todos';
+																		echo '</b>';
+																		echo ' </span>';
+																		echo '</a> ';
 
+																		echo "<a href='/electors/" . $barrio->id . "/barrios/votaron'>";
+																		echo '<span class="bg-success"> ';
+																		echo '<b>';
+																				echo 'Votaron';
+																		echo '</b>';
+																		echo ' </span>';
+																		echo '</a> ';
+
+																		echo "<a href='/electors/" . $barrio->id . "/barrios/faltanvotaron'>";
+																		echo '<span class="bg-warning"> ';
+																		echo '<b>';
+																				echo 'Faltan votar';
+																		echo '</b>';
+																		echo '</span>';
+																		echo '</a>';
+															echo "</td>";
 
 															print "</tr>";
 

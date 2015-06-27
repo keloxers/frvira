@@ -149,7 +149,7 @@
                         </a>
                       </li>
                       <li >
-                        <a href="/electoresporpuntero" >
+                        <a href="/electoresporpunteros" >
                           <i class="fa fa-angle-right"></i>
                           <span>Electores x Punteros</span>
                         </a>

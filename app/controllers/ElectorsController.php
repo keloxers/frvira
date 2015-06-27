@@ -208,9 +208,49 @@ class ElectorsController extends BaseController {
 
 				public function electoresporbarrios()
 				{
+					$barrios = DB::table('barrios')->orderby('barrio')->get();
+					$title = 'Seleccione un barrio';
+					return View::make('electors.showporbarrio', array('title' => $title, 'barrios' => $barrios));
+				}
+
+
+
+
+				public function electoresporpunteros()
+				{
 					$punteros = DB::table('electors')->where('categorias_id', '=', 2)->get();
-					$title = 'Electores por barrio';
-					return View::make('electors.showporbarrio', array('title' => $title, 'punteros' => $punteros));
+					$title = 'Seleccione un puntero';
+					return View::make('electors.showporpuntero', array('title' => $title, 'punteros' => $punteros));
+				}
+
+				public function informevotantes($id, $tabla, $opcion)
+				{
+
+					$electores = DB::table('electors');
+
+					if ($tabla=='barrios') {
+						$electores = $electores->where('barrios_id', '=', $id);
+						$title = 'Electores por barrio ';
+					} else {
+						$electores = $electores->where('puntero_id', '=', $id);
+						$title = 'Electores por punteros ';
+					}
+
+					if ($opcion=='votaron') {
+						$electores = $electores->where('dtimevotacion', '<>', '0000-00-00 00:00:00');
+						$title += 'ya votaron';
+					}
+
+					if ($opcion=='faltanvotaron') {
+						$electores = $electores->where('dtimevotacion', '=', '0000-00-00 00:00:00');
+						$title += 'faltan votar';
+					}
+
+					$electores = $electores->get();
+
+
+
+					return View::make('electors.showvotantes', array('title' => $title, 'electors' => $electores, 'apellido' => ''));
 				}
 
 

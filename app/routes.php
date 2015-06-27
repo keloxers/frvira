@@ -90,6 +90,19 @@ Route::get( '/electoresporbarrios', array(
 
 
 
+// Grabar barrio
+Route::get( '/electoresporpunteros', array(
+    'as' => 'electors.electoresporpunteros',
+    'uses' => 'ElectorsController@electoresporpunteros'
+) );
+
+
+
+// Editar Elector
+Route::get( '/electors/{id}/{tabla?}/{opcion}', array(
+    'as' => 'electors.informevotantes',
+    'uses' => 'ElectorsController@informevotantes'
+) );
 
 
 
