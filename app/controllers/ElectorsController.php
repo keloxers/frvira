@@ -43,13 +43,15 @@ class ElectorsController extends BaseController {
 		$categorias_id = Input::get('categoria');
 		$puntero_id = Input::get('puntero_id');
 		$apellido = Input::get('apellido');
-
+		$dtimeirbuscar = Input::get('dtimeirbuscar');
 
 		$elector = Elector::find($electors_id);
 
 		$elector->barrios_id = $barrios_id;
 		$elector->categorias_id = $categorias_id;
 		$elector->puntero_id = $puntero_id;
+		$elector->dtimeirbuscar = $dtimeirbuscar;
+
 
 		$elector->save();
 

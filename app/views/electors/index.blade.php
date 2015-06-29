@@ -75,6 +75,7 @@
 																			$barrio_id = 0;
 																		}
 																		?>
+
 																			{{ Form::open(array('route' => 'electors.grabarelector', "autocomplete"=>"off", 'class' => 'panel-body wrapper-lg')) }}
 																			{{ Form::hidden('electors_id', $elector->id) }}
 																			{{ Form::hidden('apellido', $apellido) }}
@@ -111,15 +112,16 @@
 
 
 																		}
-
-
+																		$dtimeirbuscar = substr($elector->dtimeirbuscar, 0,5);
+																		// $dtvot = str_replace(':', '', $dtvot);
 																		?>
 																			Puntero:<br>
 
 
 																			{{Form::select('puntero_id', $seleccion, $elector->puntero_id, array( 'id' => 'puntero_id', 'name' => 'puntero_id', 'class' => 'form-control input-sm'))}}
-
-
+																			Hora:<br>
+																			{{ Form::text('dtimeirbuscar', $dtimeirbuscar, array('class' => 'form-control input-sm', 'placeholder' => 'HH:MM')) }}
+																			<br>
 
 																			{{ Form::submit('Grabar elector', array('class' => 'btn btn-primary')) }}
 																			{{ Form::close() }}

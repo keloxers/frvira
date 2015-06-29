@@ -4,3 +4,5 @@ campos a agregar a la DB
 ALTER TABLE `electors` ADD `dtimeirbuscar` DATETIME NOT NULL AFTER `barrios_id`, ADD `dtimebuscado` DATETIME NOT NULL AFTER `dtimeirbuscar`, ADD `dtimevotacion` DATETIME NOT NULL AFTER `dtimebuscado`, ADD `mesafiscal` INT NOT NULL DEFAULT '0' AFTER `dtimevotacion`;
 
 
+ALTER TABLE `electors` CHANGE `dtimeirbuscar` `dtimeirbuscar` TIME NOT NULL, CHANGE `dtimebuscado` `dtimebuscado` TIME NOT NULL, CHANGE `dtimevotacion` `dtimevotacion` TIME NOT NULL;
+
