@@ -80,14 +80,11 @@ Route::post( '/electors/grabarelector', array(
     'uses' => 'ElectorsController@grabarelector'
 ) );
 
-
-
 // Grabar barrio
 Route::get( '/electoresporbarrios', array(
     'as' => 'electors.electoresporbarrios',
     'uses' => 'ElectorsController@electoresporbarrios'
 ) );
-
 
 
 // Grabar barrio

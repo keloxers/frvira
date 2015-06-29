@@ -8,9 +8,6 @@
   <link rel="stylesheet" href="/css/app.v2.css" type="text/css" />
   <link rel="stylesheet" href="/css/font.css" type="text/css" cache="false" />
 
-
-
-
 </head>
 <body>
   <section class="hbox stretch">
