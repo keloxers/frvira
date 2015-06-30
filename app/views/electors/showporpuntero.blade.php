@@ -38,10 +38,15 @@
 																	echo '<b>';
 																			echo $elector->matricula;
 																	echo '</b>';
-
 																	echo "</td>";
 																	echo "<td>" . $elector->clase . "</td>";
-																	echo "<td>" . $elector->apellido . ", " . $elector->nombre . "</td>";
+																	echo "<td>" . $elector->apellido . ", " . $elector->nombre;
+																	echo "<span class='badge bg-info pull-right'>";
+																	$electores_por_puntero = Elector::Where('puntero_id', '=', $elector->id)->count();
+																	echo $electores_por_puntero;
+																	echo "</span>";
+
+																	echo "</td>";
 																	echo "<td>";
 
 																	echo "<a href='/electors/" . $elector->id . "/punteros/votantestodos'>";

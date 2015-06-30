@@ -32,7 +32,12 @@
 													{
 
 															echo "<tr>";
-																	echo "<td>" . $barrio->barrio . "</td>";
+																	echo "<td>" . $barrio->barrio;
+																	echo "<span class='badge bg-info pull-right'>";
+																	$electores_por_barrio = Elector::Where('barrios_id', '=', $barrio->id)->count();
+																	echo $electores_por_barrio;
+																	echo "</span>";
+																	echo "</td>";
 
 																	echo "<td>";
 																		echo "<a href='/electors/" . $barrio->id . "/barrios/votantestodos'>";

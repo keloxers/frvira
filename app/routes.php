@@ -93,8 +93,6 @@ Route::get( '/electoresporpunteros', array(
     'uses' => 'ElectorsController@electoresporpunteros'
 ) );
 
-
-
 // Editar Elector
 Route::get( '/electors/{id}/{tabla?}/{opcion}', array(
     'as' => 'electors.informevotantes',
