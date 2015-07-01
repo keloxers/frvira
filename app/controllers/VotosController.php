@@ -18,8 +18,11 @@ class VotosController extends BaseController {
 		$voto->orden = $orden;
 		$voto->tvoto = $tvoto;
 		$voto->save();
-		echo "ok";
-		return;
+
+		$array = array('ok');
+    
+    //this route should returns json response
+    return $array;
 	}
 
 
