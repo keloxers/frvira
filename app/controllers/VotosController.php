@@ -18,6 +18,7 @@ class VotosController extends BaseController {
 		$voto->orden = $orden;
 		$voto->tvoto = $tvoto;
 		$voto->save();
+		echo "ok";
 		return;
 	}
 
