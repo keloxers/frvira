@@ -312,7 +312,7 @@ class ElectorsController extends BaseController {
 					} else {
 											$adevol[] = array(
 													'clase' => '',
-													'matricula' => 'no hay coincidencias para la tabla: ' .  $tabla . ', id: ' $id,
+													'matricula' => 'no hay coincidencias para la tabla: ' .  $tabla . ', id: ' . $id,
 													'apellido' => '',
 													'nombre' => '',
 													'direccion' => '',
