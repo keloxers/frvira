@@ -290,7 +290,7 @@ class ElectorsController extends BaseController {
 					}
 
 					$electores = $electores->where('dtimevotacion', '=', '0000-00-00 00:00:00');
-					
+
 					$electores = $electores->get();
 
 
@@ -312,7 +312,7 @@ class ElectorsController extends BaseController {
 					} else {
 											$adevol[] = array(
 													'clase' => '',
-													'matricula' => 'no hay coincidencias para: ' .  $term,
+													'matricula' => 'no hay coincidencias para la tabla: ' .  $tabla . ', id: ' $id,
 													'apellido' => '',
 													'nombre' => '',
 													'direccion' => '',
