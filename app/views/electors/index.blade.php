@@ -48,8 +48,12 @@
 										<thead>
 											<tr>
 												<th>Matricula</th>
+												<th>Clase</th>
+												<th>Mesa</th>
+												<th>Orden</th>
 												<th>Apellido y nombre</th>
 												<th>Direccion</th>
+												<th>H. Voto</th>
 												<th>Datos</th>
 											</tr>
 										</thead>
@@ -64,8 +68,29 @@
 
 													echo "<tr>";
 											        echo "<td>" . $elector->matricula . "</td>";
+															echo "<td>" . $elector->clase . "</td>";
+															echo "<td>" . $elector->mesa . "</td>";
+															echo "<td>" . $elector->ordemn . "</td>";
 															echo "<td>" . $elector->apellido . ", " . $elector->nombre . "</td>";
 															echo "<td>" . $elector->domicilio . "</td>";
+															echo "<td>";
+															if ($elector->dtimevotacion=="00:00:00") {
+																	echo '<span class="bg-danger"> ';
+																	echo "<a href='/electors/" . $elector->id . "/voto'>";
+
+																	echo "NO VOTO";
+																	echo "</a>";
+
+																	echo '</span> ';
+															} else {
+																	echo '<span class="bg-success"> ';
+																	echo "<a href='/electors/" . $elector->id . "/voto'>";
+																	echo $elector->dtimevotacion;
+																	echo "</a>";
+																	echo '</span> ';
+															}
+
+															echo "</td>";
 
 															echo "<td>";
 																		$barrio = Barrio::find($elector->barrios_id);
@@ -80,7 +105,7 @@
 																			{{ Form::hidden('electors_id', $elector->id) }}
 																			{{ Form::hidden('apellido', $apellido) }}
 
-																			Barrio:<br>
+																			Barrio:<a href="/electors/{{$elector->barrios_id}}/barrios/votantestodos" title="Ver votantes puntero" class="btn btn-rounded btn-icon"><i class="fa fa-home"></i></a><br>
 																			{{ Form::select( 'barrio', Barrio::All()->lists('barrio', 'id'), $barrio->id, array( "placeholder" => "", 'class' => 'form-control input-sm')) }}
 																		<?php
 																		$categoria = Categoria::find($elector->categorias_id);
@@ -115,12 +140,14 @@
 																		$dtimeirbuscar = substr($elector->dtimeirbuscar, 0,5);
 																		// $dtvot = str_replace(':', '', $dtvot);
 																		?>
-																			Puntero:<br>
+																			Puntero:<a href="/electors/{{$elector->puntero_id}}/punteros/votantestodos" title="Ver votantes puntero" class="btn btn-rounded btn-icon"><i class="fa fa-male"></i></a><br>
 
 
 																			{{Form::select('puntero_id', $seleccion, $elector->puntero_id, array( 'id' => 'puntero_id', 'name' => 'puntero_id', 'class' => 'form-control input-sm'))}}
-																			Hora:<br>
+																			Hora: <br>
+
 																			{{ Form::text('dtimeirbuscar', $dtimeirbuscar, array('class' => 'form-control input-sm', 'placeholder' => 'HH:MM')) }}
+
 																			<br>
 
 																			{{ Form::submit('Grabar elector', array('class' => 'btn btn-primary')) }}

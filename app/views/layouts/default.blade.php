@@ -117,14 +117,14 @@
               <li >
                 <a href="/electors" >
                   <i class="fa fa-user icon"><b class="bg-success"></b></i>
-                  <span>Elector</span>
+                  <span>Elector DNI</span>
                 </a>
               </li>
 
               <li >
                 <a href="/formlistarelectors" >
                   <i class="fa fa-users icon"><b class="bg-success"></b></i>
-                  <span>Electores</span>
+                  <span>Elector Apellido</span>
                 </a>
               </li>
 

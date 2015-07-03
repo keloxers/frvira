@@ -45,7 +45,6 @@
 																	$electores_por_puntero = Elector::Where('puntero_id', '=', $elector->id)->count();
 																	echo $electores_por_puntero;
 																	echo "</span>";
-
 																	echo "</td>";
 																	echo "<td>";
 

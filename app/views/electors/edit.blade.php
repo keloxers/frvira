@@ -40,11 +40,6 @@
 							?>
 
 
-
-
-
-
-
 						{{ Form::submit('Modificar', array('class' => 'btn btn-primary')) }}
 				</div>
 			</section>

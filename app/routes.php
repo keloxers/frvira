@@ -99,6 +99,12 @@ Route::get( '/electors/{id}/{tabla?}/{opcion}', array(
     'uses' => 'ElectorsController@informevotantes'
 ) );
 
+// Editar Elector
+Route::get( '/electors/{id}/voto', array(
+    'as' => 'electors.voto',
+    'uses' => 'ElectorsController@voto'
+) );
+
 
 
 Route::get('importarpadron','ElectorsController@importarpadron');

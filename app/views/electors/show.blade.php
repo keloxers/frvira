@@ -53,6 +53,7 @@
 												<th>Clase</th>
 												<th>Apellido y nombre</th>
 												<th>Direccion</th>
+												<th>H. Busqueda</th>
 												<th>Barrio</th>
 												<th>Puntero</th>
 											</tr>
@@ -81,6 +82,18 @@
 																	echo "<td>" . $elector->clase . "</td>";
 																	echo "<td>" . $elector->apellido . ", " . $elector->nombre . "</td>";
 																	echo "<td>" . $elector->domicilio . "</td>";
+																	echo "<td>";
+																	if ($elector->dtimevotacion=="00:00:00") {
+																			echo '<span class="bg-danger"> ';
+																			echo "NO VOTO";
+																			echo '</span> ';
+																	} else {
+																			echo '<span class="bg-success"> ';
+																			echo $elector->dtimevotacion;
+																			echo '</span> ';
+																	}
+
+																	echo "</td>";
 
 																	echo "<td>";
 																				$barrio = Barrio::find($elector->barrios_id);

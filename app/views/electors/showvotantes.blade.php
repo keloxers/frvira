@@ -11,7 +11,7 @@
 , 'class' => 'panel-body wrapper-lg')) }}
 			<div class="form-group">
 				<label>Letra o texto inicia</label>
-				{{ Form::text('apellido', $apellido, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese letras iniciales')) }}
+				{{ Form::text('apellido', $apellido, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese letras iniciales del apellido')) }}
 				<?php
 
 					if ($errors->
@@ -50,9 +50,13 @@
 										<thead>
 											<tr>
 												<th>Matricula</th>
+												<th>Mesa</th>
+												<th>Orden</th>
 												<th>Clase</th>
 												<th>Apellido y nombre</th>
 												<th>Direccion</th>
+												<th>H. Buscar</th>
+												<th>H. Voto</th>
 												<th>Barrio</th>
 												<th>Puntero</th>
 											</tr>
@@ -69,7 +73,7 @@
 
 															echo "<tr>";
 													        echo "<td>";
-																	echo "<a href='/electors/" . $elector->id . "/" . $apellido . "/edit'>";
+																	echo "<a href='/electors/" . $elector->id . "/" . $elector->apellido . "/edit'>";
 																	echo '<span class="bg-success"> ';
 																	echo '<b>';
 																			echo $elector->matricula;
@@ -78,9 +82,32 @@
 																	echo '</a>';
 
 																	echo "</td>";
+																	echo "<td>" . $elector->mesa . "</td>";
+																	echo "<td>" . $elector->ordemn . "</td>";
 																	echo "<td>" . $elector->clase . "</td>";
 																	echo "<td>" . $elector->apellido . ", " . $elector->nombre . "</td>";
 																	echo "<td>" . $elector->domicilio . "</td>";
+																	echo "<td>" . $elector->dtimeirbuscar . "</td>";
+
+																	echo "<td>";
+																	if ($elector->dtimevotacion=="00:00:00") {
+																			echo '<span class="bg-danger"> ';
+																			echo "<a href='/electors/" . $elector->id . "/voto'>";
+
+																			echo "NO VOTO";
+																			echo "</a>";
+
+																			echo '</span> ';
+																	} else {
+																			echo '<span class="bg-success"> ';
+																			echo "<a href='/electors/" . $elector->id . "/voto'>";
+																			echo $elector->dtimevotacion;
+																			echo "</a>";
+																			echo '</span> ';
+																	}
+
+																	echo "</td>";
+
 
 																	echo "<td>";
 																				$barrio = Barrio::find($elector->barrios_id);

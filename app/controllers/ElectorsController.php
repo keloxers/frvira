@@ -257,5 +257,27 @@ class ElectorsController extends BaseController {
 
 
 
+				public function voto($id)
+				{
+					echo "llegue aca";
+
+
+
+					$elector = Elector::find($id);
+
+					if ($elector->dtimevotacion=="00:00:00") {
+							$elector->dtimevotacion = date("H:i:s");
+					} else {
+						$elector->dtimevotacion = "00:00:00";
+					}
+
+					$elector->save();
+
+					$electors = DB::table('electors')->where('id', '=', $id)->get();
+
+					$title = "Electors";
+					return View::make('electors.index', array('title' => $title, 'electors' => $electors, 'apellido' => $elector->apellido));
+				}
+
 
 }
