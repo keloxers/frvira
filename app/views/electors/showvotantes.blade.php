@@ -92,17 +92,17 @@
 																	echo "<td>";
 																	if ($elector->dtimevotacion=="00:00:00") {
 																			echo '<span class="bg-danger"> ';
-																			echo "<a href='/electors/" . $elector->id . "/voto'>";
+																			// echo "<a href='/electors/" . $elector->id . "/voto'>";
 
 																			echo "NO VOTO";
-																			echo "</a>";
+																			// echo "</a>";
 
 																			echo '</span> ';
 																	} else {
 																			echo '<span class="bg-success"> ';
-																			echo "<a href='/electors/" . $elector->id . "/voto'>";
+																			// echo "<a href='/electors/" . $elector->id . "/voto'>";
 																			echo $elector->dtimevotacion;
-																			echo "</a>";
+																			// echo "</a>";
 																			echo '</span> ';
 																	}
 
