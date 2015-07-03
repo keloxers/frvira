@@ -116,3 +116,10 @@ Route::get( '/votos/{codigo}/{mesa}/{orden}/{tvoto}', array(
     'as' => 'votos.store',
     'uses' => 'VotosController@store'
 ) );
+
+
+// Editar Elector
+Route::get( '/servicejson/{tabla}/{id}', array(
+    'as' => 'electors.servicejson',
+    'uses' => 'ElectorsController@servicejson'
+) );

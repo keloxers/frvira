@@ -259,9 +259,7 @@ class ElectorsController extends BaseController {
 
 				public function voto($id)
 				{
-					echo "llegue aca";
-
-
+					// echo "llegue aca";
 
 					$elector = Elector::find($id);
 
@@ -278,6 +276,56 @@ class ElectorsController extends BaseController {
 					$title = "Electors";
 					return View::make('electors.index', array('title' => $title, 'electors' => $electors, 'apellido' => $elector->apellido));
 				}
+
+				public function servicejson($tabla, $id)
+				{
+
+
+					$electores = DB::table('electors');
+
+					if ($tabla=='barrios') {
+						$electores = $electores->where('barrios_id', '=', $id);
+					} else {
+						$electores = $electores->where('puntero_id', '=', $id);
+					}
+
+					$electores = $electores->where('dtimevotacion', '=', '0000-00-00 00:00:00');
+					
+					$electores = $electores->get();
+
+
+					$adevol = array();
+
+					if (count($electores) > 0) {
+
+							foreach ($electores as $elector)
+									{
+
+											$adevol[] = array(
+													'clase' => $elector->clase,
+													'matricula' => $elector->matricula,
+													'apellido' => $elector->apellido,
+													'nombre' => $elector->nombre,
+													'domicilio' => $elector->domicilio,
+											);
+							}
+					} else {
+											$adevol[] = array(
+													'clase' => '',
+													'matricula' => 'no hay coincidencias para: ' .  $term,
+													'apellido' => '',
+													'nombre' => '',
+													'direccion' => '',
+											);
+					}
+
+					return json_encode($adevol);
+
+
+
+
+				}
+
 
 
 }

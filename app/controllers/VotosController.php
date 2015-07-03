@@ -5,8 +5,6 @@ class VotosController extends BaseController {
 	public function store($codigo,$mesa,$orden,$tvoto)
 	{
 
-		$verdadero = array('respuesta' => 'true');
-		$falso = array('respuesta' => 'true');
 
 		$procesado = true;
 
