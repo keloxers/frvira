@@ -327,5 +327,42 @@ class ElectorsController extends BaseController {
 				}
 
 
+/**
+* Display a listing of the resource.
+*
+* @return Response
+*/
+public function electorespormesa()
+{
+
+			// $electors = DB::table('electors')->paginate(30);
+			$electors = null;
+			$title = "Electors";
+			$mesa="";
+			return View::make('electors.showpormesa', array('title' => $title, 'electors' => $electors, 'mesa' => $mesa));
+}
+
+
+
+				public function showelectorsmesa()
+				{
+
+					$mesa = Input::get('mesa');
+
+					$electores = DB::table('electors');
+					$electores = $electores->where('mesa', '=', $mesa);
+					// $electores = $electores->where('dtimevotacion', '<>', '00:00:00');
+					$electores = $electores->get();
+
+					// var_dump($electores);
+					// die;
+
+
+					$title = 'Electores por mesa';
+
+					return View::make('electors.showpormesa', array('title' => $title, 'electors' => $electores, 'mesa' => $mesa));
+				}
+
+
 
 }

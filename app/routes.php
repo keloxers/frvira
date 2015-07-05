@@ -80,6 +80,9 @@ Route::post( '/electors/grabarelector', array(
     'uses' => 'ElectorsController@grabarelector'
 ) );
 
+
+
+
 // Grabar barrio
 Route::get( '/electoresporbarrios', array(
     'as' => 'electors.electoresporbarrios',
@@ -92,6 +95,20 @@ Route::get( '/electoresporpunteros', array(
     'as' => 'electors.electoresporpunteros',
     'uses' => 'ElectorsController@electoresporpunteros'
 ) );
+
+
+// Grabar barrio
+Route::get( '/electorespormesa', array(
+    'as' => 'electors.electorespormesa',
+    'uses' => 'ElectorsController@electorespormesa'
+) );
+// Grabar barrio
+Route::post( '/electors/showelectorsmesa', array(
+    'as' => 'electors.showelectorsmesa',
+    'uses' => 'ElectorsController@showelectorsmesa'
+) );
+
+
 
 // Editar Elector
 Route::get( '/electors/{id}/{tabla?}/{opcion}', array(

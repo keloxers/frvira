@@ -5,25 +5,23 @@
 
 <div class="col-sm-6">
 	<section class="panel panel-default">
-		<header class="panel-heading font-bold">Buscar elector</header>
+		<header class="panel-heading font-bold">Buscar Electores por mesa</header>
 		<div class="panel-body">
-			{{ Form::open(array('route' => '/showlistarelectors', "autocomplete"=>"off"
+			{{ Form::open(array('route' => 'electors.showelectorsmesa', "autocomplete"=>"off"
 , 'class' => 'panel-body wrapper-lg')) }}
 			<div class="form-group">
-				<label>Letra o texto inicia</label>
-				{{ Form::text('apellido', $apellido, array('class' => 'form-control input-lg', 'placeholder' => 'Ingrese letras iniciales')) }}
+				<label>Nro Mesa</label>
+				{{ Form::text('mesa', $mesa, array('class' => 'form-control input-lg', 'placeholder' => 'Mesa cuatro numeros')) }}
 				<?php
 
 					if ($errors->
-				first('apellido')) {
+				first('mesa')) {
 				?>
-				<span class="badge bg-danger">{{ $errors->first('apellido') }}</span>
+				<span class="badge bg-danger">{{ $errors->first('mesa') }}</span>
 
 				<?php
 					}
 				?></div>
-
-
 
 			<br>
 			{{ Form::submit('Buscar', array('class' => 'btn btn-primary')) }}
@@ -70,7 +68,7 @@
 
 															echo "<tr>";
 													        echo "<td>";
-																	echo "<a href='/electors/" . $elector->id . "/" . $apellido . "/edit'>";
+																	echo "<a href='/electors/" . $elector->id . "/a/edit'>";
 																	echo '<span class="bg-success"> ';
 																	echo '<b>';
 																			echo $elector->matricula;

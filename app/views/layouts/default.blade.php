@@ -151,6 +151,12 @@
                           <span>Electores x Punteros</span>
                         </a>
                       </li>
+                      <li >
+                        <a href="/electorespormesa" >
+                          <i class="fa fa-angle-right"></i>
+                          <span>Electores x Mesa</span>
+                        </a>
+                      </li>
                 </ul>
               </li>
 
